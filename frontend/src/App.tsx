@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div style={{ padding: 20 }}>
+    <div className="reviews-section">
       <h1>Ratings & Reviews</h1>
       <ReviewInfoBlock />
       <ReviewsCarousel />

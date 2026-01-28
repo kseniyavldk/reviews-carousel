@@ -1,23 +1,34 @@
+import FeaturedL from "../assets/featured-l.png";
+import FeaturedR from "../assets/featured-r.png";
+import Rating from "../assets/rating.png";
+import "./ReviewInfoBlock.css";
+
 const ReviewInfoBlock = () => {
   return (
-    <div className="review-info-block">
-      <div className="info-left">
-        <p>More than 53k positive reviews and ratings in App Store</p>
+    <section className="review-info">
+      <div className="review-info__left">
+        <p>
+          More than <strong>53k</strong> positive reviews and ratings in App
+          Store
+        </p>
       </div>
 
-      <div className="info-center">
-        <p>Featured App</p>
-      </div>
+      <div className="review-info__center">
+        <img src={FeaturedL} alt="" className="review-info__icon" />
 
-      <div className="info-right">
-        <p>4.9</p>
-        <div className="stars">
-          {"★ ★ ★ ★ ★".split(" ").map((star, i) => (
-            <span key={i}>{star}</span>
-          ))}
+        <div className="review-info__text">
+          <span className="review-info__title">Featured App</span>
+          <span className="review-info__subtitle">in 100+ countries</span>
         </div>
+
+        <img src={FeaturedR} alt="" className="review-info__icon" />
       </div>
-    </div>
+
+      <div className="review-info__right">
+        <img src={Rating} alt="Rating stars" className="review-info__rating" />
+        <span className="review-info__score">4.9</span>
+      </div>
+    </section>
   );
 };
 

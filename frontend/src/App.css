@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.reviews-section {
+  background-color: #17161a;
+  padding: 60px 40px;
+}
+
+.reviews-section h1 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
