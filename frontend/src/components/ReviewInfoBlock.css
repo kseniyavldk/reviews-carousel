@@ -1,0 +1,37 @@
+.review-info-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  flex-wrap: wrap;
+}
+
+.review-info-block > div {
+  flex: 1 1 30%;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.info-left {
+  text-align: left;
+}
+
+.info-center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.info-right {
+  text-align: right;
+}
+
+.stars span {
+  color: gold;
+  margin-left: 2px;
+  font-size: 16px;
+}
