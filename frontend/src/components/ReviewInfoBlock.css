@@ -1,79 +1,105 @@
 .review-info {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto minmax(260px, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  gap: 80px;
+  padding: 80px 40px 60px;
+}
 
-  padding: 32px 40px;
-  margin: 40px 0;
+.review-info__item {
+  color: #fff;
+}
 
-  background-color: #17161a;
+.review-info__item--left {
+  font-size: 22px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.review-info__item--left strong {
+  font-weight: 700;
   color: #ffffff;
 }
 
-.review-info__left {
-  flex: 1;
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.review-info__center {
-  flex: 1;
+.review-info__item--center {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  text-align: center;
+  gap: 20px;
 }
 
-.review-info__icon {
-  width: 28px;
-  height: auto;
+.review-info__item--center img {
+  width: 42px;
 }
 
-.review-info__text {
+.review-info__item--center .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.review-info__item--center .subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.review-info__item--right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 28px;
+}
+
+.rating-left {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: flex-end;
 }
 
-.review-info__title {
-  font-size: 16px;
-  font-weight: 600;
+.rating-left img {
+  width: 300px;
 }
 
-.review-info__subtitle {
+.rating-left .total {
+  margin-top: 6px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.45);
+  text-align: right;
 }
 
-.review-info__right {
-  flex: 1;
+.rating-right {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
 }
 
-.review-info__rating {
-  width: 110px;
-  height: auto;
-}
-
-.review-info__score {
-  font-size: 22px;
+.rating-right .score {
+  font-size: 56px;
   font-weight: 600;
+  line-height: 1;
+}
+
+.rating-right .out-of {
+  margin-top: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .review-info {
-    flex-direction: column;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
     text-align: center;
   }
 
-  .review-info__right {
+  .review-info__item--right {
     justify-content: center;
+  }
+
+  .rating-left {
+    align-items: center;
+  }
+
+  .rating-left img {
+    width: 220px;
   }
 }

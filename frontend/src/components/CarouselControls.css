@@ -1,0 +1,39 @@
+.carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+
+  margin-top: 32px;
+  padding-right: 40px;
+}
+
+.carousel-control {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.carousel-control img {
+  width: 30px;
+  height: auto;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.carousel-control:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .carousel-controls {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .carousel-control img {
+    width: 24px;
+  }
+}

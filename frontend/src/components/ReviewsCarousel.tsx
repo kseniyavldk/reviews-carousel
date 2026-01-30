@@ -3,6 +3,7 @@ import { Review } from "../types/review";
 import { fetchReviews } from "../api/reviews";
 
 import starsImg from "../assets/stars.png";
+import CarouselControls from "./CarouselControls";
 
 import "./ReviewsCarousel.css";
 
@@ -14,11 +15,9 @@ const ReviewsCarousel = () => {
   useEffect(() => {
     fetchReviews()
       .then((data) => {
-        if (data && Array.isArray(data.reviews)) {
-          setReviews(data.reviews);
-        }
+        if (data?.reviews) setReviews(data.reviews);
       })
-      .catch((err) => console.error(err));
+      .catch(console.error);
   }, []);
 
   const next = () => {
@@ -30,64 +29,59 @@ const ReviewsCarousel = () => {
   };
 
   useEffect(() => {
-    startAutoplay();
-    return stopAutoplay;
+    if (!reviews.length) return;
+
+    intervalRef.current = setInterval(next, 3000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, [reviews]);
 
-  const startAutoplay = () => {
-    stopAutoplay();
-    intervalRef.current = setInterval(next, 3000);
-  };
+  if (!reviews.length) return null;
 
-  const stopAutoplay = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  if (!reviews.length) return <div>Loading...</div>;
-
-  const getVisibleCount = () => {
-    if (window.innerWidth >= 1024) return 3;
-    if (window.innerWidth >= 768) return 2;
-    return 1;
-  };
-
-  const visibleCount = getVisibleCount();
+  const visibleCount = 3;
+  const totalVisible = visibleCount + 2;
 
   const getVisibleReviews = () => {
-    const visible: Review[] = [];
-    for (let i = 0; i < visibleCount; i++) {
-      visible.push(reviews[(currentIndex + i) % reviews.length]);
-    }
-    return visible;
+    return Array.from({ length: totalVisible }).map((_, i) => {
+      const index = (currentIndex - 1 + i + reviews.length) % reviews.length;
+      return reviews[index];
+    });
   };
 
   return (
     <div
       className="carousel"
-      onMouseEnter={stopAutoplay}
-      onMouseLeave={startAutoplay}
-      onTouchStart={stopAutoplay}
-      onTouchEnd={startAutoplay}
+      onMouseEnter={() =>
+        intervalRef.current && clearInterval(intervalRef.current)
+      }
+      onMouseLeave={() => (intervalRef.current = setInterval(next, 3000))}
     >
-      <button className="carousel-btn left" onClick={prev}>
-        ◀
-      </button>
-
       <div className="carousel-track">
-        {getVisibleReviews().map((review) => (
-          <div className="carousel-card" key={review.id}>
-            <h3>{review.title}</h3>{" "}
-            <div className="rating-stars">
-              <img src={starsImg} alt="rating stars" />
+        {getVisibleReviews().map((review, i) => {
+          const isSide = i === 0 || i === totalVisible - 1;
+
+          return (
+            <div
+              key={`${review.id}-${i}`}
+              className={`carousel-card ${isSide ? "carousel-card--side" : ""}`}
+            >
+              <h3>{review.title}</h3>
+
+              <div className="rating-stars">
+                <img src={starsImg} alt="rating stars" />
+              </div>
+
+              <p>{review.text}</p>
             </div>
-            <p>{review.text}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      <button className="carousel-btn right" onClick={next}>
-        ▶
-      </button>
+      <CarouselControls onPrev={prev} onNext={next} />
     </div>
   );
 };
