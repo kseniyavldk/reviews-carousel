@@ -134,8 +134,12 @@
 }
 
 @media (max-width: 1024px) {
-  .carousel-card {
-    flex: 0 0 calc(100% / 2 - 24px);
+  .carousel-card-main {
+    flex: 0 0 calc(100% / 3 - 16px);
+  }
+
+  .carousel-card--side {
+    display: none;
   }
 }
 
@@ -149,6 +153,10 @@
   }
 
   .carousel-btn {
+    display: none;
+  }
+
+  .carousel-card--side {
     display: none;
   }
 }
