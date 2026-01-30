@@ -1,9 +1,10 @@
 .review-info {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) auto minmax(260px, 1fr);
-  align-items: center;
-  gap: 80px;
-  padding: 80px 40px 60px;
+  grid-template-columns: repeat(3, 400px);
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  color: #fff;
 }
 
 .review-info__item {
@@ -24,6 +25,7 @@
 .review-info__item--center {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 

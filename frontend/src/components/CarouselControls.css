@@ -1,10 +1,9 @@
 .carousel-controls {
+  position: absolute;
+  bottom: -50px;
+  right: 0;
   display: flex;
-  justify-content: flex-end;
   gap: 16px;
-
-  margin-top: 32px;
-  padding-right: 40px;
 }
 
 .carousel-control {
@@ -29,8 +28,9 @@
 
 @media (max-width: 768px) {
   .carousel-controls {
-    justify-content: center;
-    padding-right: 0;
+    bottom: -60px;
+    right: 50%;
+    transform: translateX(50%);
   }
 
   .carousel-control img {

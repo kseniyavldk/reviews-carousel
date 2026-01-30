@@ -53,35 +53,44 @@ const ReviewsCarousel = () => {
   };
 
   return (
-    <div
-      className="carousel"
-      onMouseEnter={() =>
-        intervalRef.current && clearInterval(intervalRef.current)
-      }
-      onMouseLeave={() => (intervalRef.current = setInterval(next, 3000))}
-    >
-      <div className="carousel-track">
-        {getVisibleReviews().map((review, i) => {
-          const isSide = i === 0 || i === totalVisible - 1;
-
-          return (
-            <div
-              key={`${review.id}-${i}`}
-              className={`carousel-card ${isSide ? "carousel-card--side" : ""}`}
-            >
-              <h3>{review.title}</h3>
-
-              <div className="rating-stars">
-                <img src={starsImg} alt="rating stars" />
+    <div className="carousel">
+      <div className="carousel-track-wrapper">
+        <div className="carousel-track">
+          {getVisibleReviews().map((review, i) => {
+            const isSide = i === 0 || i === totalVisible - 1;
+            if (!isSide) {
+              return (
+                <div
+                  key={review.id}
+                  className="carousel-card carousel-card-main"
+                >
+                  <h3>{review.title}</h3>
+                  <div className="rating-stars">
+                    <img src={starsImg} alt="rating stars" />
+                  </div>
+                  <p>{review.text}</p>
+                </div>
+              );
+            }
+            return (
+              <div
+                key={review.id}
+                className="carousel-card carousel-card--side"
+              >
+                <h3>{review.title}</h3>
+                <div className="rating-stars">
+                  <img src={starsImg} alt="rating stars" />
+                </div>
+                <p>{review.text}</p>
               </div>
+            );
+          })}
+        </div>
 
-              <p>{review.text}</p>
-            </div>
-          );
-        })}
+        <div className="carousel-controls-wrapper">
+          <CarouselControls onPrev={prev} onNext={next} />
+        </div>
       </div>
-
-      <CarouselControls onPrev={prev} onNext={next} />
     </div>
   );
 };
